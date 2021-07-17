@@ -1,0 +1,208 @@
+#include<iostream>	
+using namespace std;
+
+//declaring
+char matrix[3][3] = { '1','2','3','4','5','6','7','8','9' };
+char player = 'X'; //defaults at X
+int counter; //counter
+
+//display matrix
+void Draw()
+{
+	system("cls");
+	cout << "Tic Tac Toe by Mira Plante, Indep Study P. 7" << endl;
+	cout << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			cout << "   " << matrix[i][j] << " ";
+		}
+		cout << endl; //making each call of the matrix (123, 456, 789) display in a row
+	}
+}
+
+void Input()
+{
+	int input;
+	cout << endl << "It's " << player << "'s turn. Press the number of the box: ";
+	cin >> input;
+
+	if (input == 1)
+	{
+		if (matrix[0][0] == '1')
+			matrix[0][0] = player;
+		else
+		{
+			cout << "Box is already in use, try again!" << endl;
+			Input();
+		}
+	}
+	if (input == 2)
+	{
+		if (matrix[0][1] == '2')
+			matrix[0][1] = player;
+		else
+		{
+			cout << "Field is already in use, try again!" << endl;
+			Input();
+		}
+	}
+	if (input == 3)
+	{
+		if (matrix[0][2] == '3')
+			matrix[0][2] = player;
+		else
+		{
+			cout << "Field is already in use, try again!" << endl;
+			Input();
+		}
+	}
+	if (input == 4)
+	{
+		if (matrix[1][0] == '4')
+			matrix[1][0] = player;
+		else
+		{
+			cout << "Field is already in use, try again!" << endl;
+			Input();
+		}
+	}
+	if (input == 5)
+	{
+		if (matrix[1][1] == '5')
+			matrix[1][1] = player;
+		else
+		{
+			cout << "Field is already in use, try again!" << endl;
+			Input();
+		}
+	}
+	if (input == 6)
+	{
+		if (matrix[1][2] == '6')
+			matrix[1][2] = player;
+		else
+		{
+			cout << "Field is already in use, try again!" << endl;
+			Input();
+		}
+	}
+	if (input == 7)
+	{
+		if (matrix[2][0] == '7')
+			matrix[2][0] = player;
+		else
+		{
+			cout << "Field is already in use, try again!" << endl;
+			Input();
+		}
+	}
+	if (input == 8)
+	{
+		if (matrix[2][1] == '8')
+			matrix[2][1] = player;
+		else
+		{
+			cout << "Field is already in use, try again!" << endl;
+			Input();
+		}
+	}
+	if (input == 9)
+	{
+		if (matrix[2][2] == '9')
+			matrix[2][2] = player;
+		else
+		{
+			cout << "Field is already in use, try again!" << endl;
+			Input();
+		}
+	}
+
+
+}
+
+void TogglePlayer() //changes between X and O
+{
+	if (player == 'X')
+		player = 'O';
+	else if (player == 'O')
+		player = 'X';
+
+}
+
+char Win() {
+	//row win X
+	if (matrix[0][0] == 'X' && matrix[0][1] == 'X' && matrix[0][2] == 'X')
+		return 'X';
+	if (matrix[1][0] == 'X' && matrix[1][1] == 'X' && matrix[1][2] == 'X')
+		return 'X';
+	if (matrix[2][0] == 'X' && matrix[2][1] == 'X' && matrix[2][2] == 'X')
+		return 'X';
+	//column win X
+	if (matrix[0][0] == 'X' && matrix[1][0] == 'X' && matrix[2][0] == 'X')
+		return 'X';
+	if (matrix[0][1] == 'X' && matrix[1][1] == 'X' && matrix[2][1] == 'X')
+		return 'X';
+	if (matrix[0][2] == 'X' && matrix[1][2] == 'X' && matrix[2][2] == 'X')
+		return 'X';
+	//diagonal win X
+	if (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X')
+		return 'X';
+	if (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X')
+		return 'X';
+
+	//row win O
+	if (matrix[0][0] == 'O' && matrix[0][1] == 'O' && matrix[0][2] == 'O')
+		return 'O';
+	if (matrix[1][0] == 'O' && matrix[1][1] == 'O' && matrix[1][2] == 'O')
+		return 'O';
+	if (matrix[2][0] == 'O' && matrix[2][1] == 'O' && matrix[2][2] == 'O')
+		return 'O';
+	//column win O
+	if (matrix[0][0] == 'O' && matrix[1][0] == 'O' && matrix[2][0] == 'O')
+		return 'O';
+	if (matrix[0][1] == 'O' && matrix[1][1] == 'O' && matrix[2][1] == 'O')
+		return 'O';
+	if (matrix[0][2] == 'O' && matrix[1][2] == 'O' && matrix[2][2] == 'O')
+		return 'O';
+	//diagonal win O
+	if (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O')
+		return 'O';
+	if (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O')
+		return 'O';
+
+	return'/';
+}
+
+
+int main()
+{
+	counter = 0;
+	Draw(); //displaying Draw()
+	while (1) //will run forever
+	{
+		counter++;
+		Input();
+		Draw();
+		if (Win() == 'X')
+		{
+			cout << endl << "X Wins!" << endl << endl;
+			break; //will terminate the while loop
+		}
+		else if (Win() == 'O')
+		{
+			cout << endl << "O Wins!" << endl << endl;
+			break;
+		}
+		else if (Win() == '/' && counter == 9)
+		{
+			cout << endl << "Draw." << endl << endl;
+			break;
+		}
+		TogglePlayer();
+	}
+	system("pause");
+	return 0;
+}
+
